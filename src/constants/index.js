@@ -1,0 +1,7 @@
+const types = {
+	REQUEST_UPDATE:"REQUEST_UPDATE",
+	UPDATE_SUCCESS:"UPDATE_SUCCESS",
+	UPDATE_ERROR:"UPDATE_ERROR"
+}
+
+export default types
