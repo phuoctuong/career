@@ -1,11 +1,11 @@
-const path = require('path')
-const webpack = require('webpack')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
 	filename: '[name].css',
 	disable: process.env.NODE_ENV === 'development'
-})
+});
 
 module.exports = {
 	context: path.resolve(process.cwd(), 'src'),
@@ -20,7 +20,13 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.(jsx|js)?$/,
+				enforce: 'pre',
+				test: /\.(jsx|js)$/,
+				include: path.resolve(process.cwd(),'src'),
+				loader: 'eslint-loader',
+			},
+			{
+				test: /\.(jsx|js)$/,
 				include: path.resolve(process.cwd(), 'src'),
 				use: [
 					{
@@ -101,7 +107,7 @@ module.exports = {
 			$: 'jquery',
 			jQuery: 'jquery'
 		}),
-		new webpack.NoEmitOnErrorsPlugin(),
+		//new webpack.NoEmitOnErrorsPlugin(), is not necessary for seeing eslint-warnings
 		extractSass
 	]
-}
+};

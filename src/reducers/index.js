@@ -1,8 +1,8 @@
-import {combineReducers} from "redux"
-import updateReducer from "./updateReducer.js"
+import { combineReducers } from 'redux';
+import updateReducer from './updateReducer.js';
 
 const reducers = {
-  updateReducer
-}
+	updateReducer
+};
 
-export default combineReducers(reducers)
+export default combineReducers(reducers);

@@ -1,32 +1,29 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import thunk from "redux-thunk"
-import {AppContainer} from "react-hot-loader"
-import {createStore, applyMiddleware} from "redux"
-import {Provider} from "react-redux"
-import App from "./App.jsx"
-import rootReducer from "./reducers"
-
-const store = createStore(rootReducer,applyMiddleware(thunk))
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { AppContainer } from 'react-hot-loader';
+import { Provider } from 'react-redux';
+import App from './App.jsx';
+import store from './stores';
+import './utils';
 
 ReactDOM.render(
 	<AppContainer>
 		<Provider store={store}>
-			<App/>
+			<App />
 		</Provider>
 	</AppContainer>,
-	document.getElementById("todoapp")
-)
+	document.getElementById('todoapp')
+);
 
-if(module.hot) {
-	module.hot.accept("./App",() => {
-		const NextApp = require("./App").default
+if (module.hot) {
+	module.hot.accept('./App', () => {
+		const NextApp = require('./App').default; // eslint-disable-line global-require
 		ReactDOM.render(
 			<AppContainer>
 				<Provider store={store}>
-					<NextApp/>
+					<NextApp />
 				</Provider>
 			</AppContainer>
-		)
-	})
+		);
+	});
 }

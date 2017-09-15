@@ -1,6 +1,6 @@
 // @flow
-import type {Reducers} from "../reducer"
+import type { Reducers } from '../reducers';
 
-type $ExtractFunctionReturn = <V>(v:(...args:any) => V) => V
+type $ExtractFunctionReturn = <V>(v: (...args:any) => V) => V;
 
-export type State = $ObjMap<Reducers,$ExtractFunctionReturn>
+export type State = $ObjMap<Reducers, $ExtractFunctionReturn>;
