@@ -1,8 +1,10 @@
 {
 	"parser": "babel-eslint",
 	"plugins": [
+		"react",
 		"import",
-		"flowtype"
+		"flowtype",
+		"jest"
 	],
 	 "env": {
         "node": true,
@@ -10,7 +12,9 @@
     },
 	"extends": [
 		"airbnb",
-		"plugin:flowtype/recommended"
+		"plugin:flowtype/recommended",
+		"plugin:react/recommended",
+		"plugin:jest/recommended"
 	],
 	"settings": {
 		"flowtype": {
@@ -19,12 +23,14 @@
 	},
 	"rules": {
 		"import/extensions": 0,
+		"import/no-extraneous-dependencies": 0,
+		"import/no-unresolved": 0,
 		"react/prefer-stateless-function": 0,
-		"react/jsx-indent": [2, "tab"],
 		"react/require-default-props": 0,
+		"react/prop-types": 0,
+		"react/jsx-filename-extension": 0,
 		"linebreak-style": 0,
 		"no-unused-vars": 1, 
-		"indent": [2, "tab", {"SwitchCase": 1}],
 		"no-tabs": 0,
 		"no-inner-declarations":0,
 		"arrow-body-style": 0,
@@ -35,9 +41,12 @@
 		"comma-dangle": [2, { "functions": "never" }],
 		"quotes": [2, "single"],
 		"max-len": [2, 120, { "ignoreComments": true }],
-		"max-statements-per-line": [2, { "max": 1 }]
+		"max-statements-per-line": [2, { "max": 1 }],
+		"jsx-a11y/heading-has-content": 0
 	},
 	"globals": {
-		"document": false
+		"document": false,
+		"describe": true,
+		"it": true
 	}
 }

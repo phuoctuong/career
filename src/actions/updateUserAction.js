@@ -1,33 +1,35 @@
-import types from '../constants';
-import updateUserApi from '../apis/updateUserApi.js';
+import { createAction } from 'redux-actions';
+import updateUserApi from 'apis/updateUserApi';
 
-export function requestUpdate() {
-	return {
-		type: types.REQUEST_UPDATE
-	};
-}
+export const actionTypes = {
+  REQUEST_UPDATE: 'REQUEST_UPDATE',
+  UPDATE_SUCCESS: 'UPDATE_SUCCESS',
+  UPDATE_ERROR: 'UPDATE_ERROR'
+};
 
-export function updateSuccess(payload) {
-	return {
-		type: types.UPDATE_SUCCESS,
-		payload
-	};
-}
+export const requestUpdate = createAction(actionTypes.REQUEST_UPDATE);
 
-export function updateError(payload) {
-	return {
-		type: types.UPDATE_ERROR,
-		payload
-	};
-}
+export const updateSuccess = createAction(actionTypes.UPDATE_SUCCESS, data => ({
+  payload: {
+    ...data
+  },
+  error: false
+}));
+
+export const updateError = createAction(actionTypes.UPDATE_ERROR, error => ({
+  payload: {
+    messages: error.messages
+  },
+  error: true
+}));
 
 const updateUserAction = (type) => {
-	return (dispatch) => {
-		dispatch(requestUpdate());
-		return updateUserApi(type)
-			.then(result => dispatch(updateSuccess(result)))
-			.catch(error => dispatch(updateError(error)));
-	};
+  return (dispatch) => {
+    dispatch(requestUpdate());
+    return updateUserApi(type)
+      .then(result => dispatch(updateSuccess(result)))
+      .catch(error => dispatch(updateError(error)));
+  };
 };
 
 export default updateUserAction;

@@ -1,7 +1,8 @@
 /dist/*
 /node_modules/*
 /view/*
-.*
+**/flow-typed/*
+*.config.js
+server.js
 package.json
 README.md
-
