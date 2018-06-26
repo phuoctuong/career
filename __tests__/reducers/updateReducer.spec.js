@@ -1,32 +1,36 @@
-import types from "../../src/constants"
-import {initialState}, updateReducer from "../../src/reducers/updateReducer.js"
+import types from '../../src/constants';
+import updateReducer from '../../src/reducers/updateReducer.js';
 
 describe('Update User Reducer', () => {
-  let state
+  let state;
   beforeEach(() => {
-    state = updateReducer(undefined,{})
-  })
+    state = updateReducer(undefined, {});
+  });
 
   it('should be initialState', () => {
-    expect(updateReducer(state,{})).toEqual(state)
+    expect(updateReducer(state, {})).toEqual(state);
   });
 
   it('should handle Request Update type', () => {
-    expect(updateReducer(state,{
-      type: types.REQUEST_UPDATE
-    })).toEqual(state)
+    expect(
+      updateReducer(state, {
+        type: types.REQUEST_UPDATE
+      })
+    ).toEqual(state);
   });
 
   it('should handle Update Success type', () => {
-    expect(updateReducer(state, {
-      type: types.UPDATE_SUCCESS,
-      payload: {
-        1: {
-          name: 'A',
-          age: 10
+    expect(
+      updateReducer(state, {
+        type: types.UPDATE_SUCCESS,
+        payload: {
+          1: {
+            name: 'A',
+            age: 10
+          }
         }
-      }
-    })).toEqual({
+      })
+    ).toEqual({
       ...state,
       payload: {
         1: {
@@ -34,17 +38,19 @@ describe('Update User Reducer', () => {
           age: 10
         }
       }
-    })
+    });
   });
 
   it('should handle Update Error type', () => {
-    expect(updateReducer(state, {
-      type: types.UPDATE_ERROR,
-      payload: 'User id not found'
-    })).toEqual({
+    expect(
+      updateReducer(state, {
+        type: types.UPDATE_ERROR,
+        payload: 'User id not found'
+      })
+    ).toEqual({
       ...state,
       error: true,
       payload: 'User id not found'
-    })
+    });
   });
-})
+});
