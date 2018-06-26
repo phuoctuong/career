@@ -2,7 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const chalk = require('chalk');
 const baseConfig = require('./webpack-base.config.js');
 
