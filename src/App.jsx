@@ -1,13 +1,14 @@
 import React from 'react';
-import ButtonUpdate from 'components/ButtonUpdate';
+import { BrowserRouter, Route } from 'react-router-dom';
+import RouterContainer from './RouterContainer';
 
 export default class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Header App Title: </h1>
-        <ButtonUpdate title="Button Update" />
-      </div>
+      <BrowserRouter>
+        <Route render={props => <RouterContainer {...props} />} />
+      </BrowserRouter>
     );
   }
 }
+

@@ -8,6 +8,20 @@
 	],
 	"plugins":[
 		"transform-runtime",
-		"react-hot-loader/babel"
+		"react-hot-loader/babel",
+		[
+      "react-css-modules",
+      {
+        "exclude": "node_modules",
+        "filetypes": {
+          ".scss": {
+            "syntax": "postcss-scss"
+          }
+				},
+				"generateScopedName": "[path]___[name]__[local]___[hash:base64:5]",
+				"webpackHotModuleReloading": true,
+				"context": "./src"
+      }
+    ]
 	]
 }

@@ -50,10 +50,16 @@ module.exports = {
 			},
 			{
 				test: /\.scss$/,
-				include: [path.resolve(__dirname, 'src/asset/stylesheet')],
 				use: extractSass.extract({
 					use: [
-						{ loader: 'css-loader', options: { sourceMap: true } }, // collect css files and move it into a string
+						{
+							loader: 'css-loader',
+							options: {
+								sourceMap: true,
+								modules: true,
+								localIdentName: '[path]___[name]__[local]___[hash:base64:5]'
+							}
+						}, // collect css files and move it into a string
 						{ loader: 'resolve-url-loader' }, // resolve url when using image paths
 						{ loader: 'sass-loader', options: { sourceMap: true } } // compile scss to css
 					],
@@ -64,7 +70,14 @@ module.exports = {
 				test: /\.css$/,
 				use: extractSass.extract({
 					use: [
-						{ loader: 'css-loader', options: { sourceMap: true } }
+						{
+							loader: 'css-loader',
+							options: {
+								sourceMap: true,
+								modules: true,
+								localIndentName: '[name]__[local]___[hash:base64:5]' 
+							}
+						}
 					],
 					fallback: 'style-loader'
 				})
@@ -90,19 +103,9 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new webpack.optimize.UglifyJsPlugin({ // minify bundle
-			compress: {
-				warnings: false // remove warning messages in third-party.
-			}
-		}),
 		new webpack.optimize.CommonsChunkPlugin({
 			name: 'commons',
 			filename: 'commons.js'
-		}),
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-			}
 		}),
 		new webpack.ProvidePlugin({
 			$: 'jquery',
