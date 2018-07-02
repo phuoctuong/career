@@ -12,7 +12,7 @@ class Home extends React.Component {
         <div>
           <h2>Top 5 GitHub Users</h2>
           <span>Tap the username to see more information</span>
-          <div styleName="group-user">
+          <div>
             {topUsers.map(userName => (
               <div key={userName} styleName="wrapper-item">
                 <Link to={`/users/${userName}`} styleName="item">
