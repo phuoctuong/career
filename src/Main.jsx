@@ -16,7 +16,7 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept('./App', () => {
-    const NextApp = require('./App').default; // eslint-disable-line global-require
+    const NextApp = require('./App').default;
     ReactDOM.render(
       <AppContainer>
         <Provider store={store}>
