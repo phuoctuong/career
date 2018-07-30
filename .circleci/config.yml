@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  build:
+  build1:
     docker:
       - image: circleci/node:7.10
     steps:
@@ -16,3 +16,11 @@ jobs:
       - run:
           name: Echo Test
           command: echo "Hello guys"
+workflows:
+  version: 2
+  build1_and_build2:
+    jobs:
+      - build1
+      - build2:
+        requires:
+          - build1
