@@ -1,8 +1,18 @@
 version: 2
 jobs:
-  build:
+  build1:
     docker:
       - image: circleci/node:7.10
     steps:
       - checkout
-      - run: echo "hello world"
+      - run:
+          name: Echo
+          command: echo "Hello World"
+  build2:
+    docker:
+      - image: circleci/node:7.10
+    steps:
+      - checkout
+      - run:
+          name: Echo Test
+          command: echo "Hello guys"
