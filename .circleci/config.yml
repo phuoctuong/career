@@ -1,18 +1,26 @@
 version: 2
 jobs:
-  build:
+  one:
     docker:
       - image: circleci/node:7.10
     steps:
       - checkout
       - run:
-          name: Echo
-          command: echo "Hello World"
-  build:
+          name: Echo ONE
+          command: echo "Hello ONE"
+      - run: sleep 25
+  two:
     docker:
       - image: circleci/node:7.10
     steps:
       - checkout
       - run:
-          name: Echo Test
-          command: echo "Hello guys"
+          name: Echo TWO
+          command: echo "Hello TWO"
+      - run: sleep 15
+workflows:
+  version: 2
+  one_and_two:
+    jobs:
+      - one
+      - two
