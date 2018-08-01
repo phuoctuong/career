@@ -8,7 +8,7 @@ jobs:
       - run:
           name: Echo
           command: echo "Hello World"
-  build2:
+  build:
     docker:
       - image: circleci/node:7.10
     steps:
