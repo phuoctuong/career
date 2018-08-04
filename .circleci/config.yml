@@ -14,7 +14,7 @@ jobs:
           root: my_workspace
           paths:
             - echo-output
-  build_2:
+  build:
     docker:
       - image: circleci/node:7.10
     steps:
