@@ -24,9 +24,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Test
-          command: npm test
-      - run:
           name: Generate code coverage
           command: echo "Test succesfully"
 workflows:
@@ -37,3 +34,6 @@ workflows:
       - test:
           requires:
             - build
+          filters:
+            branches:
+              only: master
