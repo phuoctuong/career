@@ -1,38 +1,45 @@
 version: 2
 jobs:
-  one:
+  build:
+    working_directory: ~/mern-starter
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:4.8.2-jessie
+      - image: mongo:3.4.4-jessie
     steps:
       - checkout
+      - run
+          name: Update npm
+          command: sudo npm install -g npm@latest
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
       - run:
-          name: Echo ONE
-          command: echo "Hello ONE"
-      - run: mkdir -p my_workspace
-      - run: echo "Trying out workspaces" > my_workspace/echo-output
-      - persist_to_workspace:
-          root: my_workspace
+          name: Install npm wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
           paths:
-            - echo-output
-  two:
+            - node_modules
+  test:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:4.8.2-jessie
+      - image: mongo:3.4.4-jessie
     steps:
       - checkout
       - run:
-          name: Echo TWO
-          command: echo "Hello TWO"
-      - attach_workspace:
-          at: my_workspace
-      - run: |
-          if [[ $(cat my_workspace/echo-output) == "Trying out workspaces" ]]; then
-            echo "It workeds!";
-          else
-            echo "Nope!"; exit 1
-          fi
+          name: Test
+          command: npm test
+      - run:
+          name: Generate code coverage
+          command: echo "Test succesfully"
 workflows:
   version: 2
-  one_and_two:
+  build_test:
     jobs:
-      - one
-      - two
+      - build
+      - test:
+          required:
+            - build
+          filters:
+            branches:
+              only: master
+      
