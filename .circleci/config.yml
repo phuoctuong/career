@@ -3,12 +3,12 @@ jobs:
   build:
     working_directory: ~/mern-starter
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.11.1
     steps:
       - checkout
       - run:
           name: Update npm
-          command: sudo npm install -g npm@latest
+          command: sudo npm install -g npm@5.6.0
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run:
@@ -20,7 +20,7 @@ jobs:
             - node_modules
   test:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.11.1
     steps:
       - checkout
       - run:
