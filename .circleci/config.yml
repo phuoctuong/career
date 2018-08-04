@@ -33,11 +33,11 @@ jobs:
           command: echo "Test succesfully"
 workflows:
   version: 2
-  build_test:
+  build_and_test:
     jobs:
       - build
       - test:
-          required:
+          requires:
             - build
           filters:
             branches:
