@@ -11,5 +11,8 @@ jobs:
       - run:
           name: Call environment
           command: echo ${TUONG}
+      - store_artifacts:
+          path: view/
+          destination: tr1
 
  
