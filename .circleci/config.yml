@@ -9,8 +9,6 @@ jobs:
     steps:
       - checkout
       - run:
-          environment:
-            TUONG: bo
           name: Call environment
           command: echo ${TUONG}
 
