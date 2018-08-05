@@ -14,5 +14,6 @@ jobs:
       - store_artifacts:
           path: view/
           destination: tr1
-
+      - store_test_results:
+          path: view/
  
