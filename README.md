@@ -1,3 +1,4 @@
+[![CircleCI](https://circleci.com/gh/phuoctuong/career.svg?style=svg&circle-token=eab056acd4768b5b89379330cb0758883e94c4a3)](https://circleci.com/gh/phuoctuong/career)
 # Sample Project Configuration
 This project is a React/Redux application using ES2015/ES6 synxtax via [Babel](http://babeljs.io/) and other technologies as follows:
 - [React](https://facebook.github.io/react/docs/getting-started.html) - View

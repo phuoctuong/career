@@ -1,19 +1,21 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/cicleci-demo-workflows
+    working_directory: ~/mern-starter
     docker:
       - image: circleci/node:8.11.1
-        environment:
-          TUONG: tuong
     steps:
       - checkout
       - run:
-          name: Call environment
-          command: echo ${TUONG}
-      - store_artifacts:
-          path: view/
-          destination: tr1
-      - store_test_results:
-          path: view/
- 
+          name: update-npm
+          command: sudo npm install -g npm@latest
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install npm wee
+          command: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      
