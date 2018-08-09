@@ -7,7 +7,7 @@ var chalk = require('chalk');
 var config = require('./webpack.config.js');
 
 var app = express();
-var compiler = webpack(config)
+var compiler = webpack(config);
 
 var listener = null;
 
