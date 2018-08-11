@@ -11,6 +11,6 @@ ARG APP_ENV
 
 ENV NODE_ENV=$APP_ENV
 
-RUN if [ $NODE_ENV = "production" ]; then npm run build; fi
+RUN if [ "$NODE_ENV" = "production" ]; then npm run build; fi
 
 EXPOSE 8080

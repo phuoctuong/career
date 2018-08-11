@@ -4,13 +4,13 @@ services:
     build:
       context: .
       dockerfile: ./dockerfile
+      args:
+        - APP_ENV=development
     ports:
       - 8080:8080
     volumes:
       - .:/usr/app/sample-project
       - /usr/app/sample-project/node_modules
-    environment:
-      NODE_ENV: development
     command:
       npm run dev
   production:
