@@ -10,13 +10,14 @@ var app = express();
 var compiler = webpack(config);
 
 var listener = null;
+var port = process.env.PORT || 8080;
 
 compiler.apply(
   new webpack.ProgressPlugin(function(percentage, msg) {
     if (percentage == 1) {
       if (!listener) {
         listener = app.listen(
-          8080,
+          port,
           console.log(chalk.blue.bold('Listening port 8080'))
         );
       }
@@ -29,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function(req, res) {
     res.sendFile(path.resolve(__dirname, 'dist/index.html'));
   });
-  app.listen(8080, console.log(chalk.blue.bold('Listening port 8080')));
+  app.listen(port, console.log(chalk.blue.bold(`Listening port ${port}`)));
 
 } else if (process.env.NODE_ENV === 'development') {
   app.use(
